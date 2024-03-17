@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace UI
@@ -35,6 +36,7 @@ namespace UI
         
         private void OnSettingsButtonPressedAction()
         {
+            SceneManager.LoadScene("SettingsScene");
         }
         
         private void OnExitButtonPressedAction()
