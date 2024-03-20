@@ -20,6 +20,15 @@ namespace UI
             else Instance = this;
         }
 
+        [ContextMenu("Test Popup")]
+        private void TestPopup()
+        {
+            Open("Test Popup", "This is a test popup", () =>
+            {
+                Debug.Log("Popup Confirmed");
+            });
+        }
+        
         public void Open(string label, string text, Action callback)
         {
             _currentPopup = Instantiate(_popupPrefab, _canvas.transform);
