@@ -1,32 +1,36 @@
 using System;
-using System.Collections;
-using Interfaces;
 using UnityEngine;
+
 
 namespace Gameplay
 {
-    public class TimerBehaviour : MonoBehaviour, IDisplayable
+    public class TimerBehaviour : MonoBehaviour
     {
+        public static TimerBehaviour Instance { get; private set; }
+        
         private float _currentTimeCount;
         private bool _timerEnabled;
-        
-        private void Start()
-        {
-            Initialize();
-        }
 
-        public void Initialize()
+        public static Action TimeIsUp;
+
+        private void Awake()
         {
-            _currentTimeCount = GetMaxTimeAmount();
-            _timerEnabled = true;
-            StartCoroutine(UpdateTimer());
+            if (Instance != null && Instance.GetInstanceID() != this.GetInstanceID())
+            {
+                throw new Exception(string.Format("Instance of {0} is already exist",this.name));
+            }
+
+            Instance = this;
+            
+            #if UNITY_EDITOR && TEST
+            Initialize(1);
+            #endif
         }
         
-        //TODO: link with difficulty
-        private float GetMaxTimeAmount()
+        public void Initialize(int k)
         {
-            int k = 2; //temp property
-            return 120 - 30 * k;
+            _currentTimeCount = Mathf.Clamp(120-30*k,30,90);
+            _timerEnabled = true;
         }
 
         private void Update()
@@ -36,38 +40,21 @@ namespace Gameplay
             if (_currentTimeCount >= 0)
             {
                 _currentTimeCount -= Time.deltaTime;
-                //Display();
             }
             else
             {
-                TimeIsUp();
+                _timerEnabled = false;
+                TimeIsUp?.Invoke();
             }
         }
-
-        private IEnumerator UpdateTimer()
-        {
-            while (_timerEnabled)
-            {
-                Display();
-                yield return new WaitForSeconds(1);
-            }
-        }
-
-        //TODO: display timer in UI
-        public void Display()
+        
+        public string GetTimeString()
         {
             float minutes = Mathf.FloorToInt(_currentTimeCount / 60);
             float seconds = Mathf.FloorToInt(_currentTimeCount % 60);
 
-            string timer = string.Format("{0:00}:{1:00}", minutes, seconds);
-            
-            UnityEngine.Debug.Log(timer,this);
+            return string.Format("{0:00}:{1:00}", minutes, seconds);
         }
-
-        //TODO: reduce attempts
-        private void TimeIsUp()
-        {
-            _timerEnabled = false;
-        }
+        
     }
 }
