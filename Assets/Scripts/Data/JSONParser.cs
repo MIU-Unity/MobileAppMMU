@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using Newtonsoft.Json;
 
 namespace Data
 {
@@ -17,8 +18,12 @@ namespace Data
             {
                 throw new Exception("File not exist");
             }
+
+            string fileData = File.ReadAllText(fullPath);
             
-            return JsonUtility.FromJson<Dictionary<string, T>>(fullPath);
+            var result = JsonConvert.DeserializeObject<Dictionary<string, T>>(fileData);
+            
+            return result;
         }
     }
 }
