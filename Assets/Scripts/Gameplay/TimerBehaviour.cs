@@ -1,29 +1,18 @@
 using System;
 using System.Collections;
+using Common.Utility;
 using Plugins.DebugAttribute;
 using UnityEngine;
 
 
 namespace Gameplay
 {
-    public class TimerBehaviour : MonoBehaviour
+    public class TimerBehaviour : Singleton<TimerBehaviour>
     {
-        public static TimerBehaviour Instance { get; private set; }
-        
         private float _currentTimeCount;
         private bool _timerEnabled;
 
         public static Action TimeIsUp;
-
-        private void Awake()
-        {
-            if (Instance != null && Instance.GetInstanceID() != this.GetInstanceID())
-            {
-                throw new Exception(string.Format("Instance of {0} is already exist",this.name));
-            }
-
-            Instance = this;
-        }
         
         [Debug(1)]
         public void Initialize(int k)
