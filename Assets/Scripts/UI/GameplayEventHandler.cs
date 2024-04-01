@@ -1,3 +1,4 @@
+using System;
 using Gameplay;
 using Plugins.DebugAttribute;
 using UnityEngine;
@@ -6,8 +7,20 @@ namespace UI
 {
     public class GameplayEventHandler : MonoBehaviour
     {
-        [SerializeField] private PausePopup _pausePopup;
+        public static GameplayEventHandler Instance { get; private set; }
         
+        [SerializeField] private PausePopup _pausePopup;
+
+        private void Awake()
+        {
+            if (Instance != null && Instance.GetInstanceID() != this.GetInstanceID())
+            {
+                throw new Exception(string.Format("Instance of {0} is already exist",this.name));
+            }
+
+            Instance = this;
+        }
+
         [Debug]
         public void Initialize()
         {
