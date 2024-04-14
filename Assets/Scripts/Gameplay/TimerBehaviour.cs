@@ -10,7 +10,8 @@ namespace Gameplay
     {
         public static TimerBehaviour Instance { get; private set; }
         
-        private float _currentTimeCount;
+        public float MaxTimeCount { get; private set; }
+        public float CurrentTimeCount { get; private set; }
         private bool _timerEnabled;
 
         public static Action TimeIsUp;
@@ -28,7 +29,7 @@ namespace Gameplay
         [Debug(1)]
         public void Initialize(int k)
         {
-            _currentTimeCount = Mathf.Clamp(120-30*k,30,90);
+            CurrentTimeCount = MaxTimeCount = Mathf.Clamp(120-30*k,30,90);
             _timerEnabled = true;
         }
         
@@ -36,21 +37,22 @@ namespace Gameplay
         {
             if (_timerEnabled == false) return;
             
-            if (_currentTimeCount >= 0)
+            if (CurrentTimeCount > 0)
             {
-                _currentTimeCount -= Time.deltaTime;
+                CurrentTimeCount -= Time.deltaTime;
             }
             else
             {
+                CurrentTimeCount = 0;
                 _timerEnabled = false;
                 TimeIsUp?.Invoke();
             }
         }
         
-        public string GetTimeString()
+        public string GetTimeAsString()
         {
-            float minutes = Mathf.FloorToInt(_currentTimeCount / 60);
-            float seconds = Mathf.FloorToInt(_currentTimeCount % 60);
+            float minutes = Mathf.FloorToInt(CurrentTimeCount / 60);
+            float seconds = Mathf.FloorToInt(CurrentTimeCount % 60);
 
             return string.Format("{0:00}:{1:00}", minutes, seconds);
         }

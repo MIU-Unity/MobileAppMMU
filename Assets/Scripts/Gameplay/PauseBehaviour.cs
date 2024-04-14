@@ -1,6 +1,7 @@
 using System;
 using Plugins.DebugAttribute;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Gameplay
 {
@@ -10,7 +11,7 @@ namespace Gameplay
         
         public static Action<bool> OnPause;
 
-        private bool _isPaused = false;
+        public bool IsPaused { get; private set; } = false;
         
         private void Awake()
         {
@@ -25,10 +26,10 @@ namespace Gameplay
         [Debug(true)]
         public void Set(bool value)
         {
-            if (value == _isPaused) 
+            if (value == IsPaused) 
                 throw new Exception(string.Format("Pause state is already {0}",value));
 
-            _isPaused = value;
+            IsPaused = value;
             OnPause?.Invoke(value);
         }
     }
