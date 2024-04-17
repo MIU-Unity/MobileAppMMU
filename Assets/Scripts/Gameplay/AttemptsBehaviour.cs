@@ -1,26 +1,16 @@
 using System;
 using Plugins.DebugAttribute;
+using Common.Utility;
 using UnityEngine;
 
 namespace Gameplay
 {
-    public class AttemptsBehaviour : MonoBehaviour
+    public class AttemptsBehaviour : Singleton<AttemptsBehaviour>
     {
-        public static AttemptsBehaviour Instance { get; private set; }
         public static Action<int> OnAttemptsChanged;
         
         private readonly int _maxAttempts = 3;
         private int _currentAttempts = 3;
-
-        private void Awake()
-        {
-            if (Instance != null && Instance.GetInstanceID() != this.GetInstanceID())
-            {
-                throw new Exception(string.Format("Instance of {0} is already exist",this.name));
-            }
-
-            Instance = this;
-        }
 
         public void Initialize()
         {

@@ -1,3 +1,5 @@
+using System;
+using Common.Utility;
 using System.Collections;
 using Gameplay;
 using Plugins.DebugAttribute;
@@ -7,8 +9,9 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class GameplayEventHandler : MonoBehaviour
+    public class GameplayEventHandler : Singleton<GameplayEventHandler>
     {
+
         [SerializeField] private PausePopup _pausePopup;
         [SerializeField] private TextMeshProUGUI _timerText;
         [SerializeField] private Slider _timerSlider;
@@ -32,8 +35,8 @@ namespace UI
             AttemptsBehaviour.OnAttemptsChanged -= OnAttemptsChanged;
             Debug.Log("GameplayEventHandler destroyed");
         }
-        
-        
+
+
         private void OnAttemptsChanged(int value)
         {
             Debug.Log($"Attempt changed. Current value: {value}");
@@ -64,6 +67,6 @@ namespace UI
                 yield return new WaitForSeconds(1f);
             }
         }
-        
+
     }
 }
