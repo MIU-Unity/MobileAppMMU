@@ -14,7 +14,21 @@ namespace UI
         public void Initialize()
         {
             PauseBehaviour.OnPause += OnPause;
+            AttemptsBehaviour.OnAttemptsChanged += OnAttemptsChanged;
             Debug.Log("GameplayEventHandler initialized");
+        }
+
+        public void OnDestroy()
+        {
+            PauseBehaviour.OnPause -= OnPause;
+            AttemptsBehaviour.OnAttemptsChanged -= OnAttemptsChanged;
+            Debug.Log("GameplayEventHandler destroyed");
+        }
+        
+        
+        private void OnAttemptsChanged(int value)
+        {
+            Debug.Log($"Attempt changed. Current value: {value}");
         }
 
         private void OnPause(bool value)
