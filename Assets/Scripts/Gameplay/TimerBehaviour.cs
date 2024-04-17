@@ -15,13 +15,15 @@ namespace Gameplay
 
         public static Action TimeIsUp;
 
-        [Debug(1)]
+        // [Debug(1)]
         public void Initialize(int k)
         {
             CurrentTimeCount = MaxTimeCount = Mathf.Clamp(120 - 30 * k, 30, 90);
-            _timerEnabled = true;
         }
 
+        [Debug]
+        public void Enable() => _timerEnabled = true;
+        
         private void Update()
         {
             if (_timerEnabled == false) return;

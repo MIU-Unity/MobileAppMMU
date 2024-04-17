@@ -7,8 +7,12 @@ namespace Gameplay
     {
         public void Start()
         {
+            HintBehaviour.Instance.Initialize();
+            AttemptsBehaviour.Instance.Initialize();
+            TimerBehaviour.Instance.Initialize(1);
             GameplayEventHandler.Instance.Initialize();
-            //add more instances when they release, like HintBehaviour, AttemptsBehaviour, etc.
+            //add more instances when they release
+            //add more instances when they release
         }
     }
 }
