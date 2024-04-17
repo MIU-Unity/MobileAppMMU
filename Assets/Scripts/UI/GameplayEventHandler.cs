@@ -1,14 +1,16 @@
+using System;
+using Common.Utility;
 using Gameplay;
 using Plugins.DebugAttribute;
 using UnityEngine;
 
 namespace UI
 {
-    public class GameplayEventHandler : MonoBehaviour
+    public class GameplayEventHandler : Singleton<GameplayEventHandler>
     {
-        [SerializeField] private PausePopup _pausePopup;
         
-        [Debug]
+        [SerializeField] private PausePopup _pausePopup;
+
         public void Initialize()
         {
             PauseBehaviour.OnPause += OnPause;
