@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common.Utility;
 using UnityEngine;
 using Data;
 using Plugins.DebugAttribute;
 
 namespace Gameplay
 {
-    public class HintBehaviour : MonoBehaviour
+    public class HintBehaviour : Singleton<HintBehaviour>
     {
         private DateTime _lastGetting;
         private readonly string[] _allowedTypes = { "light", "full" };
