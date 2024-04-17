@@ -22,7 +22,7 @@ namespace Gameplay
 
         
         // [Debug]
-        void Initialize()
+        public void Initialize()
         {
             _lastGetting = DateTime.Now;
             if (HintsData.Count < 1)
@@ -39,11 +39,14 @@ namespace Gameplay
         [Debug(1, "light")]
         public string Get(int level, string type)
         {
-            CheckIsValidType(type);
+            if (!HasValidType(type))
+            {
+                throw new Exception($"'type' has not valid value: {type}");
+            }
 
             string reason = string.Empty;
             
-            if (!CheckIsCanGet(type, ref reason))
+            if (!IsHintAvailable(type, ref reason))
             {
                 throw new Exception($"Подсказка недоступна ({reason})");
             }
@@ -56,7 +59,7 @@ namespace Gameplay
             return HintsData[level.ToString()][type];
         }
         
-        private bool CheckIsCanGet(string type, ref string reason)
+        private bool IsHintAvailable(string type, ref string reason)
         {
             bool flag = true;
             
@@ -77,18 +80,16 @@ namespace Gameplay
 
         public bool IsHintUsed(string type)
         {
-            CheckIsValidType(type);
-            return _usedHints[type];
-        }
-
-        private bool CheckIsValidType(string type)
-        {
-            if (!_allowedTypes.Any(type.Contains))
+            if (!HasValidType(type))
             {
                 throw new Exception($"'type' has not valid value: {type}");
             }
+            return _usedHints[type];
+        }
 
-            return true;
+        private bool HasValidType(string type)
+        {
+            return _allowedTypes.Any(type.Contains);
         }
     }
 }
