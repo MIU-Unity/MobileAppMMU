@@ -3,46 +3,26 @@ using Common.Utility;
 using Gameplay;
 using Plugins.DebugAttribute;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
     public class GameplayEventHandler : Singleton<GameplayEventHandler>
     {
-        
-        [SerializeField] private PausePopup _pausePopup;
+        [SerializeField] private Button _hintButton;
+        [SerializeField] private Button _pauseButton;
 
         public void Initialize()
         {
-            PauseBehaviour.OnPause += OnPause;
-            AttemptsBehaviour.OnAttemptsChanged += OnAttemptsChanged;
+            _pauseButton.onClick.AddListener(() => PauseBehaviour.Instance.Set(true));
             Debug.Log("GameplayEventHandler initialized");
         }
 
         public void OnDestroy()
         {
-            PauseBehaviour.OnPause -= OnPause;
-            AttemptsBehaviour.OnAttemptsChanged -= OnAttemptsChanged;
             Debug.Log("GameplayEventHandler destroyed");
         }
         
         
-        private void OnAttemptsChanged(int value)
-        {
-            Debug.Log($"Attempt changed. Current value: {value}");
-        }
-
-        private void OnPause(bool value)
-        {
-            Debug.Log("OnPause: " + value);
-            if (value)
-            {
-                _pausePopup.Open();
-            }
-            else
-            {
-                _pausePopup.Close();
-            }
-            
-        }
     }
 }

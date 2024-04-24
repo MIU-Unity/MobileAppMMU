@@ -12,12 +12,12 @@ namespace UI
         [SerializeField] private Button _confirmButton;
         [SerializeField] private Button _cancelButton;
 
-        public void Initialize(string label, string text, Action OnConfirm, Action OnCancel)
+        public void Initialize(string label, string text, Action onConfirm, Action onCancel)
         {
             _label.text = label;
             _description.text = text;
-            _confirmButton.onClick.AddListener(()=> OnConfirm.Invoke());
-            _cancelButton.onClick.AddListener(() => OnCancel.Invoke());
+            _confirmButton.onClick.AddListener(()=> onConfirm.Invoke());
+            _cancelButton.onClick.AddListener(() => onCancel.Invoke());
         }
 
         public void End() => Destroy(this.gameObject, .1f);

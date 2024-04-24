@@ -1,11 +1,12 @@
 using Gameplay;
+using Interfaces;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class PausePopup : MonoBehaviour
+    public class PausePopup : MonoBehaviour, ICanBePaused
     {
         [SerializeField] private GameObject _pauseMenuObject;
         [SerializeField] private Button _settingsButton;
@@ -39,6 +40,12 @@ namespace UI
             //TODO: Add settings button
             // _settingsButton.onClick.AddListener(() => OnSettingsButtonClicked()?.Invoke();
             _isFirstOpen = false;
+        }
+
+        public void OnPause(bool value)
+        {
+            if (value) Open();
+            else Close();
         }
     }
 }
