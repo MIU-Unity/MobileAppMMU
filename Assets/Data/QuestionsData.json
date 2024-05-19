@@ -1,0 +1,32 @@
+﻿{
+  "questions": [
+    {
+      "id": 1,
+      "question": "Какая болезнь была в 2020 году?",
+      "isDone": true,
+      "historical_reference": "лол",
+      "tag": 2,
+      "answer": {
+        "id": 1,
+        "answerId": 1,
+        "isRight": true,
+        "isShow": true
+      },
+      "hintId": 1
+    },
+    {
+      "id": 2,
+      "question": "Что произошло в 2020 году?",
+      "isDone": true,
+      "historical_reference": "лол",
+      "tag": 1,
+      "answer": {
+        "id": 1,
+        "answerId": 1,
+        "isRight": true,
+        "isShow": true
+      },
+      "hintId": 1
+    }
+  ]
+}
