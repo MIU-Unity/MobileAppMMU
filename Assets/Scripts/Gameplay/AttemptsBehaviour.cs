@@ -8,19 +8,19 @@ namespace Gameplay
     public class AttemptsBehaviour : Singleton<AttemptsBehaviour>
     {
         public static Action<int> OnAttemptsChanged;
-        
-        private readonly int _maxAttempts = 3;
-        private int _currentAttempts = 3;
+
+        private const int MaxAttempts = 3;
+        private int _currentAttempts;
 
         public void Initialize()
         {
-            _currentAttempts = _maxAttempts;
+            _currentAttempts = MaxAttempts;
         }
 
         [Debug]
         public void Decrease()
         {
-            if(_currentAttempts == 0) 
+            if (_currentAttempts == 0)
                 throw new Exception("Cannot decrease attempts below 0");
             _currentAttempts--;
             OnAttemptsChanged?.Invoke(_currentAttempts);

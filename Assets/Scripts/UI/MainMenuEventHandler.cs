@@ -15,34 +15,29 @@ namespace UI
         
         private void Awake()
         {
-            MainMenuEventHub.OnNewGameButtonPressedAction += OnNewGameButtonPressedAction;
-            MainMenuEventHub.OnContinueButtonPressedAction += OnContinueButtonPressedAction;
-            MainMenuEventHub.OnSettingsButtonPressedAction += OnSettingsButtonPressedAction;
-            MainMenuEventHub.OnExitButtonPressedAction += OnExitButtonPressedAction;
-            
-            _newGameButton.onClick.AddListener(MainMenuEventHub.NewGameButtonPressed);
-            _continueButton.onClick.AddListener(MainMenuEventHub.ContinueButtonPressed);
-            _settingsButtons.onClick.AddListener(MainMenuEventHub.SettingsButtonPressed);
-            _quitButton.onClick.AddListener(MainMenuEventHub.ExitButtonPressed);
+            _newGameButton.onClick.AddListener(OnNewGameButtonPressed);
+            _continueButton.onClick.AddListener(OnContinueButtonPressed);
+            _settingsButtons.onClick.AddListener(OnSettingsButtonPressed);
+            _quitButton.onClick.AddListener(OnExitButtonPressed);
         }
         
-        private void OnNewGameButtonPressedAction()
+        private void OnNewGameButtonPressed()
         {
         }
 
-        private void OnContinueButtonPressedAction()
+        private void OnContinueButtonPressed()
         {
         }
         
-        private void OnSettingsButtonPressedAction()
+        private void OnSettingsButtonPressed()
         {
             SceneManager.LoadScene("SettingsScene");
         }
         
-        private void OnExitButtonPressedAction()
+        private void OnExitButtonPressed()
         {
-            PopupConstructor.Instance.Open("Confirm your actions!",
-                "Are you sure you want to close the application?",
+            PopupConstructor.Instance.Open("Подтвердите свои действия!",
+                "Вы уверены что хотите выйти?",
                 ()=>Application.Quit());
         }
         

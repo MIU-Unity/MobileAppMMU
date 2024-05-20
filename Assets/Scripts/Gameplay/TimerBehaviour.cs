@@ -1,29 +1,47 @@
 using System;
 using System.Collections;
 using Common.Utility;
+using Interfaces;
 using Plugins.DebugAttribute;
 using UnityEngine;
 
 
 namespace Gameplay
 {
-    public class TimerBehaviour : Singleton<TimerBehaviour>
+    public class TimerBehaviour : Singleton<TimerBehaviour>, ICanBePaused
     {
-        public float MaxTimeCount { get; private set; }
-        public float CurrentTimeCount { get; private set; }
-        private bool _timerEnabled;
-
         public static Action TimeIsUp;
 
-        // [Debug(1)]
+        /// <summary>
+        /// Значение таймера
+        /// </summary>
+        public float GetFloat => _currentTimeCount;
+
+        /// <summary>
+        /// Значения таймера в строке вида 00:00
+        /// </summary>
+        public string GetString
+        {
+            get
+            {
+                float minutes = Mathf.FloorToInt(_currentTimeCount / 60);
+                float seconds = Mathf.FloorToInt(_currentTimeCount % 60);
+
+                return string.Format("{0:00}:{1:00}", minutes, seconds);
+            }
+        }
+
+        private float _currentTimeCount;
+        private bool _timerEnabled;
+
         public void Initialize(int k)
         {
-            CurrentTimeCount = MaxTimeCount = Mathf.Clamp(120 - 30 * k, 30, 90);
+            _currentTimeCount = Mathf.Clamp(120 - 30 * k, 30, 90);
         }
 
         [Debug]
         public void Enable() => _timerEnabled = true;
-        
+
         private void Update()
         {
             if (_timerEnabled == false) return;
@@ -40,12 +58,9 @@ namespace Gameplay
             }
         }
 
-        public string GetTimeAsString()
+        public void OnPause(bool value)
         {
-            float minutes = Mathf.FloorToInt(CurrentTimeCount / 60);
-            float seconds = Mathf.FloorToInt(CurrentTimeCount % 60);
-
-            return string.Format("{0:00}:{1:00}", minutes, seconds);
+            _timerEnabled = !value;
         }
 
     }

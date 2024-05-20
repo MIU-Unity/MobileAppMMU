@@ -6,9 +6,11 @@ using Plugins.DebugAttribute;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UI;
 
 namespace UI
 {
+    public class GameplayEventHandler : Singleton<GameplayEventHandler>
     public class GameplayEventHandler : Singleton<GameplayEventHandler>
     {
 
@@ -31,8 +33,6 @@ namespace UI
 
         public void OnDestroy()
         {
-            PauseBehaviour.OnPause -= OnPause;
-            AttemptsBehaviour.OnAttemptsChanged -= OnAttemptsChanged;
             Debug.Log("GameplayEventHandler destroyed");
         }
 
