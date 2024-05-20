@@ -2,38 +2,33 @@ using System;
 using Common.Utility;
 using System.Collections;
 using Gameplay;
+using Interfaces;
 using Plugins.DebugAttribute;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UI;
 
 namespace UI
 {
-    public class GameplayEventHandler : Singleton<GameplayEventHandler>
-    public class GameplayEventHandler : Singleton<GameplayEventHandler>
+
+    public class GameplayEventHandler : Singleton<GameplayEventHandler>, ICanBePaused
     {
 
         [SerializeField] private PausePopup _pausePopup;
         [SerializeField] private TextMeshProUGUI _timerText;
         [SerializeField] private Slider _timerSlider;
 
+        private bool _enabled;
+        
         [Debug]
         public void Initialize()
         {
-            PauseBehaviour.OnPause += OnPause;
             AttemptsBehaviour.OnAttemptsChanged += OnAttemptsChanged;
 
-            _timerSlider.maxValue = TimerBehaviour.Instance.MaxTimeCount;
+            _timerSlider.maxValue = TimerBehaviour.Instance.GetFloat;
             _timerSlider.value = 0;
 
             StartCoroutine(UpdateTimerUI());
-            Debug.Log("GameplayEventHandler initialized");
-        }
-
-        public void OnDestroy()
-        {
-            Debug.Log("GameplayEventHandler destroyed");
         }
 
 
@@ -42,31 +37,20 @@ namespace UI
             Debug.Log($"Attempt changed. Current value: {value}");
         }
 
-        private void OnPause(bool value)
-        {
-            Debug.Log("OnPause: " + value);
-            if (value)
-            {
-                _pausePopup.Open();
-            }
-            else
-            {
-                _pausePopup.Close();
-            }
-        }
-
         private IEnumerator UpdateTimerUI()
         {
+            _enabled = true;
             while (true)
             {
-                if (PauseBehaviour.Instance.IsPaused == false)
-                {
-                    _timerText.text = TimerBehaviour.Instance.GetTimeAsString();
-                    _timerSlider.value = TimerBehaviour.Instance.CurrentTimeCount;
-                }
+                if (!_enabled) continue;
+                
+                _timerText.text = TimerBehaviour.Instance.GetString;
+                _timerSlider.value = TimerBehaviour.Instance.GetFloat;
                 yield return new WaitForSeconds(1f);
             }
         }
 
+        public void OnPause(bool value) => _enabled = !value;
+        
     }
 }

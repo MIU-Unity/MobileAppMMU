@@ -46,22 +46,20 @@ namespace Gameplay
         {
             if (_timerEnabled == false) return;
 
-            if (CurrentTimeCount > 0)
+            if (_currentTimeCount > 0)
             {
-                CurrentTimeCount -= Time.deltaTime;
+                _currentTimeCount -= Time.deltaTime;
             }
             else
             {
-                CurrentTimeCount = 0;
+                _currentTimeCount = 0;
                 _timerEnabled = false;
                 TimeIsUp?.Invoke();
             }
         }
 
-        public void OnPause(bool value)
-        {
-            _timerEnabled = !value;
-        }
+        public void OnPause(bool value) => _timerEnabled = !value;
+        
 
     }
 }
