@@ -18,7 +18,7 @@ namespace UI
         [SerializeField] private TextMeshProUGUI _timerText;
         [SerializeField] private Slider _timerSlider;
 
-        private bool _enabled;
+        private bool _timerGUIEnabled;
         
         [Debug]
         public void Initialize()
@@ -39,10 +39,10 @@ namespace UI
 
         private IEnumerator UpdateTimerUI()
         {
-            _enabled = true;
+            _timerGUIEnabled = true;
             while (true)
             {
-                if (!_enabled) continue;
+                if (!_timerGUIEnabled) continue;
                 
                 _timerText.text = TimerBehaviour.Instance.GetString;
                 _timerSlider.value = TimerBehaviour.Instance.GetFloat;
@@ -50,7 +50,16 @@ namespace UI
             }
         }
 
-        public void OnPause(bool value) => _enabled = !value;
+        public void OnPause(bool value) => _timerGUIEnabled = !value;
+
+        public void OnHintButtonClick()
+        {
+            //TODO: автоматическое определение уровня и типа подсказки
+            PopupConstructor.Instance.Open(
+                "Подсказка",
+                HintBehaviour.Instance.Get(1,"light"),
+                PopupType.Clear);
+        }
         
     }
 }

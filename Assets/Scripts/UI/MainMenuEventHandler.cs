@@ -38,6 +38,7 @@ namespace UI
         {
             PopupConstructor.Instance.Open("Подтвердите свои действия!",
                 "Вы уверены что хотите выйти?",
+                PopupType.WithButtons,
                 ()=>Application.Quit());
         }
         
