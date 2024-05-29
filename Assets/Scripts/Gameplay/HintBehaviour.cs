@@ -19,7 +19,7 @@ namespace Gameplay
         };
 
         private static readonly JSONParser<Dictionary<string, string>> Parser = new();
-        private static readonly Dictionary<string, Dictionary<string, string>> HintsData = Parser.Parse("HintsData.json");
+        private static readonly Dictionary<string, Dictionary<string, string>> HintsData = Parser.Test("HintsData.json")[0];
 
         
         // [Debug]
@@ -47,6 +47,7 @@ namespace Gameplay
 
             string reason = string.Empty;
             
+            //TODO: возвращать строку о том, что подсказка недоступна, возможно reason
             if (!IsHintAvailable(type, ref reason))
             {
                 throw new Exception($"Подсказка недоступна ({reason})");

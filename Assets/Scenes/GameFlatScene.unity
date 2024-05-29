@@ -884,7 +884,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvas: {fileID: 601072971}
-  _popupPrefab: {fileID: 4045546600429011712, guid: d4d152b65b0084f86b30c699af700f0c, type: 3}
+  _popupClearPrefab: {fileID: 0}
+  _popupWithButtonsPrefab: {fileID: 0}
 --- !u!1 &363171591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1941,7 +1942,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 987380041}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1225303602}
+        m_TargetAssemblyTypeName: UI.GameplayEventHandler, Assembly-CSharp
+        m_MethodName: OnHintButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &987380041
 MonoBehaviour:
   m_ObjectHideFlags: 0
