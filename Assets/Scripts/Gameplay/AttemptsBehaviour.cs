@@ -20,7 +20,7 @@ namespace Gameplay
         [Debug]
         public void Decrease()
         {
-            if(_currentAttempts == 0) 
+            if (_currentAttempts == 0)
                 throw new Exception("Cannot decrease attempts below 0");
             _currentAttempts--;
             OnAttemptsChanged?.Invoke(_currentAttempts);

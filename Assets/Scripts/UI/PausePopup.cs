@@ -34,6 +34,7 @@ namespace UI
                 PopupConstructor.Instance.Open(
                     "Выйти в меню",
                     "Вы уверены, что хотите выйти в меню? Весь несохраненный прогресс будет удален.",
+                    PopupType.WithButtons,
                     () => SceneManager.LoadScene("MainMenuScene"))
                 );
             
