@@ -15,6 +15,7 @@ namespace UI
     {
 
         [SerializeField] private PausePopup _pausePopup;
+        [SerializeField] private Popup _completeGamePopup;
         [SerializeField] private TextMeshProUGUI _timerText;
         [SerializeField] private Slider _timerSlider;
 
@@ -59,6 +60,11 @@ namespace UI
                 "Подсказка",
                 HintBehaviour.Instance.Get(1,"light"),
                 PopupType.Clear);
+        }
+
+        public void OnGameCompleted()
+        {
+            GameObject gameCompletedPopup = Instantiate(_completeGamePopup.gameObject);
         }
         
     }
