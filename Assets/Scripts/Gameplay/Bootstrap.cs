@@ -1,3 +1,4 @@
+using System;
 using UI;
 using UnityEngine;
 
@@ -11,10 +12,10 @@ namespace Gameplay
             AttemptsBehaviour.Instance.Initialize();
             TimerBehaviour.Instance.Initialize(1);
             
-            GameplayEventHandler.Instance.Initialize(); // всегда последним
+            // AnswerBehaviour.Instance.Initialize(); // help is needed
+            //add more instances when they release
             
-            //add more instances when they release
-            //add more instances when they release
+            GameplayEventHandler.Instance.Initialize(); // всегда последним
         }
     }
 }
