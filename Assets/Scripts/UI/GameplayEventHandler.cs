@@ -19,6 +19,7 @@ namespace UI
         [SerializeField] private Slider _timerSlider;
 
         private bool _timerGUIEnabled;
+        private int _count = 0;
         
         [Debug]
         public void Initialize()
@@ -57,8 +58,9 @@ namespace UI
             //TODO: автоматическое определение уровня и типа подсказки
             PopupConstructor.Instance.Open(
                 "Подсказка",
-                HintBehaviour.Instance.Get(1,"light"),
+                HintBehaviour.Instance.Get(1, (HintType)_count),
                 PopupType.Clear);
+            if (_count == 0) ++_count;
         }
         
     }

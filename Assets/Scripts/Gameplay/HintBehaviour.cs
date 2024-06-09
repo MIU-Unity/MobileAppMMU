@@ -8,18 +8,24 @@ using Plugins.DebugAttribute;
 
 namespace Gameplay
 {
+    public enum HintType
+    {
+        light = 0,
+        full = 1
+    }
+    
     public class HintBehaviour : Singleton<HintBehaviour>
     {
         private DateTime _lastGetting;
         private readonly string[] _allowedTypes = { "light", "full" };
         private readonly Dictionary<string, bool> _usedHints = new()
         {
-            { "light", false },
-            { "full", false }
+            { HintType.light.ToString(), false },
+            { HintType.full.ToString(), false }
         };
 
-        private static readonly JSONParser<Dictionary<string, string>> Parser = new();
-        private static readonly Dictionary<string, Dictionary<string, string>> HintsData = Parser.Parse("HintsData.json");
+        private static readonly JSONParser<Dictionary<string, string>[]> Parser = new();
+        private static readonly Dictionary<string, Dictionary<string, string>[]> HintsData = Parser.Parse("HintsData.json");
 
         
         // [Debug]
@@ -38,7 +44,7 @@ namespace Gameplay
         /// <param name="level">Номер уровня</param>
         /// <param name="type">"light" | "full"</param>
         [Debug(1, "light")]
-        public string Get(int level, string type)
+        public string Get(int level, HintType type)
         {
             if (!HasValidType(type))
             {
@@ -52,15 +58,15 @@ namespace Gameplay
                 throw new Exception($"Подсказка недоступна ({reason})");
             }
             
-            _usedHints[type] = true;
+            _usedHints[type.ToString()] = true;
             _lastGetting = DateTime.Now;
             
-            Debug.Log(HintsData[level.ToString()][type]);
+            Debug.Log(HintsData[level.ToString()][0 /* ЗАГЛУШКА */][type.ToString()]);
 
-            return HintsData[level.ToString()][type];
+            return HintsData[level.ToString()][0 /* ЗАГЛУШКА */][type.ToString()];
         }
         
-        private bool IsHintAvailable(string type, ref string reason)
+        private bool IsHintAvailable(HintType type, ref string reason)
         {
             bool flag = true;
             
@@ -79,18 +85,18 @@ namespace Gameplay
             return flag;
         }
 
-        public bool IsHintUsed(string type)
+        public bool IsHintUsed(HintType type)
         {
             if (!HasValidType(type))
             {
                 throw new Exception($"'type' has not valid value: {type}");
             }
-            return _usedHints[type];
+            return _usedHints[type.ToString()];
         }
 
-        private bool HasValidType(string type)
+        private bool HasValidType(HintType type)
         {
-            return _allowedTypes.Any(type.Contains);
+            return _allowedTypes.Any(type.ToString().Contains);
         }
     }
 }
