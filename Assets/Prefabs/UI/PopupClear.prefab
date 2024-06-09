@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8982887390717639142}
-  - component: {fileID: 4045546600429011712}
+  - component: {fileID: 9127008740319470623}
   m_Layer: 5
   m_Name: PopupClear
   m_TagString: Untagged
@@ -37,7 +37,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &4045546600429011712
+--- !u!114 &9127008740319470623
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,13 +46,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3274976439737733105}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06bc78cba24a4386b06e66de539781c7, type: 3}
+  m_Script: {fileID: 11500000, guid: 008f9b06c44b4cd69b282d68d7a8c24e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _label: {fileID: 1068298267096699006}
   _description: {fileID: 3451452423051659014}
   _confirmButton: {fileID: 4668464201792685173}
-  _cancelButton: {fileID: 0}
 --- !u!1 &3504664576738087691
 GameObject:
   m_ObjectHideFlags: 0

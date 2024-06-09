@@ -8,7 +8,7 @@ namespace Gameplay
     {
         public void Start()
         {
-            HintBehaviour.Instance.Initialize();
+            //HintBehaviour.Instance.Initialize();
             AttemptsBehaviour.Instance.Initialize();
             TimerBehaviour.Instance.Initialize(1);
             

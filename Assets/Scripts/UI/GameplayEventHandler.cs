@@ -1,6 +1,7 @@
 using System;
 using Common.Utility;
 using System.Collections;
+using Crystal;
 using Gameplay;
 using Interfaces;
 using Plugins.DebugAttribute;
@@ -13,15 +14,14 @@ namespace UI
 
     public class GameplayEventHandler : Singleton<GameplayEventHandler>, ICanBePaused
     {
-
+        [SerializeField] private SafeArea _safePanel;
         [SerializeField] private PausePopup _pausePopup;
-        [SerializeField] private Popup _completeGamePopup;
+        [SerializeField] private GameObject _completeGamePopup;
         [SerializeField] private TextMeshProUGUI _timerText;
         [SerializeField] private Slider _timerSlider;
 
         private bool _timerGUIEnabled;
         
-        [Debug]
         public void Initialize()
         {
             AttemptsBehaviour.OnAttemptsChanged += OnAttemptsChanged;
@@ -30,6 +30,8 @@ namespace UI
             _timerSlider.value = 0;
 
             StartCoroutine(UpdateTimerUI());
+            
+            Debug.Log("Gameplay Event Handler Initialized");
         }
 
 
@@ -62,9 +64,11 @@ namespace UI
                 PopupType.Clear);
         }
 
+        [Debug]
+        //TODO: Вызов функции событием
         public void OnGameCompleted()
         {
-            GameObject gameCompletedPopup = Instantiate(_completeGamePopup.gameObject);
+            GameObject gameCompletedPopup = Instantiate(_completeGamePopup.gameObject, _safePanel.transform);
         }
         
     }
