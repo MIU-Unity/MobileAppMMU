@@ -1,40 +1,28 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace UI
 {
     public class MainMenuEventHandler : MonoBehaviour
     {
-
-        [SerializeField] private Button _newGameButton;
-        [SerializeField] private Button _continueButton;
-        [SerializeField] private Button _settingsButtons;
-        [SerializeField] private Button _quitButton;
         
-        private void Awake()
+        public void OnNewGameButtonPressed()
         {
-            _newGameButton.onClick.AddListener(OnNewGameButtonPressed);
-            _continueButton.onClick.AddListener(OnContinueButtonPressed);
-            _settingsButtons.onClick.AddListener(OnSettingsButtonPressed);
-            _quitButton.onClick.AddListener(OnExitButtonPressed);
-        }
-        
-        private void OnNewGameButtonPressed()
-        {
+            SceneManager.LoadScene("GameFlatScene");
         }
 
-        private void OnContinueButtonPressed()
+        public void OnContinueButtonPressed()
         {
+            SceneManager.LoadScene("GameFlatScene");
+            
         }
         
-        private void OnSettingsButtonPressed()
+        public void OnSettingsButtonPressed()
         {
             SceneManager.LoadScene("SettingsScene");
         }
         
-        private void OnExitButtonPressed()
+        public void OnExitButtonPressed()
         {
             PopupConstructor.Instance.Open("Подтвердите свои действия!",
                 "Вы уверены что хотите выйти?",

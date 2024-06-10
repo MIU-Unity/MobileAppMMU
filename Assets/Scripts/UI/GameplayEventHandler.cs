@@ -3,16 +3,16 @@ using Common.Utility;
 using System.Collections;
 using Crystal;
 using Gameplay;
-using Interfaces;
 using Plugins.DebugAttribute;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace UI
 {
 
-    public class GameplayEventHandler : Singleton<GameplayEventHandler>, ICanBePaused
+    public class GameplayEventHandler : Singleton<GameplayEventHandler>
     {
         [SerializeField] private SafeArea _safePanel;
         [SerializeField] private PausePopup _pausePopup;
@@ -28,13 +28,18 @@ namespace UI
 
             _timerSlider.maxValue = TimerBehaviour.Instance.GetFloat;
             _timerSlider.value = 0;
+            PauseBehaviour.OnPause += OnPause;
 
             StartCoroutine(UpdateTimerUI());
             
             Debug.Log("Gameplay Event Handler Initialized");
         }
-
-
+        
+        private void OnDestroy()
+        {
+            PauseBehaviour.OnPause -= OnPause;
+        }
+        
         private void OnAttemptsChanged(int value)
         {
             Debug.Log($"Attempt changed. Current value: {value}");
@@ -70,6 +75,12 @@ namespace UI
         {
             GameObject gameCompletedPopup = Instantiate(_completeGamePopup.gameObject, _safePanel.transform);
         }
+
+        public void BackToMenuButton()
+        {
+            SceneManager.LoadScene("MainMenuScene");
+        }
         
+
     }
 }
