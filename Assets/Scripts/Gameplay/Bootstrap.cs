@@ -10,7 +10,7 @@ namespace Gameplay
         {
             //HintBehaviour.Instance.Initialize();
             AttemptsBehaviour.Instance.Initialize();
-            TimerBehaviour.Instance.Initialize(1);
+            TimerBehaviour.Instance.Initialize(Difficult.Get());
             
             // AnswerBehaviour.Instance.Initialize(); // help is needed
             //add more instances when they release
