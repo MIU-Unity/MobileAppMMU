@@ -1,3 +1,4 @@
+using Common.Utility;
 using Gameplay;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,7 +6,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class PausePopup : MonoBehaviour
+    public class PausePopup : Singleton<PausePopup>
     {
         [SerializeField] private GameObject _pauseMenuObject;
         [SerializeField] private Button _settingsButton;
@@ -28,7 +29,9 @@ namespace UI
         private void Initialize()
         {
             Debug.Log("Initialize PausePopup");
+            _resumeButton.onClick.RemoveAllListeners();
             _resumeButton.onClick.AddListener(() => PauseBehaviour.Instance.Set(false));
+            _backToMenuButton.onClick.RemoveAllListeners();
             _backToMenuButton.onClick.AddListener(() =>
                 PopupConstructor.Instance.Open(
                     "Выйти в меню",
@@ -37,7 +40,7 @@ namespace UI
                     () => SceneManager.LoadScene("MainMenuScene"))
                 );
             
-            PauseBehaviour.OnPause += OnPause;
+            //PauseBehaviour.OnPause += OnPause;
             
             //TODO: Add settings button
             // _settingsButton.onClick.AddListener(() => OnSettingsButtonClicked()?.Invoke();
@@ -46,7 +49,8 @@ namespace UI
 
         private void OnDestroy()
         {
-            PauseBehaviour.OnPause -= OnPause;
+            //PauseBehaviour.OnPause -= OnPause;
+            
         }
         
         public void OnPause(bool value)
