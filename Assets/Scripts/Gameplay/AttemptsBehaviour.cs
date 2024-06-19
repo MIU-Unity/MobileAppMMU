@@ -15,6 +15,7 @@ namespace Gameplay
         public void Initialize()
         {
             _currentAttempts = MaxAttempts;
+            Debug.Log("Attempts Behaviour Initialized");
         }
 
         [Debug]

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Common.Utility;
-using Interfaces;
 using Plugins.DebugAttribute;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -11,6 +10,8 @@ namespace Gameplay
 {
     public class PauseBehaviour : Singleton<PauseBehaviour>
     {
+        public static Action<bool> OnPause;
+        
         private bool _isPaused = false;
 
         [Debug(true)]
@@ -21,8 +22,8 @@ namespace Gameplay
 
             _isPaused = value;
 
-            List<ICanBePaused> objectsToPause = FindObjectsOfType<MonoBehaviour>(true).OfType<ICanBePaused>().ToList();
-            objectsToPause.ForEach(o => o.OnPause(value));
+            OnPause?.Invoke(value);
+            
         }
     }
 }

@@ -1,38 +1,46 @@
 using System;
 using Common.Utility;
 using System.Collections;
+using Crystal;
 using Gameplay;
-using Interfaces;
 using Plugins.DebugAttribute;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace UI
 {
 
-    public class GameplayEventHandler : Singleton<GameplayEventHandler>, ICanBePaused
+    public class GameplayEventHandler : Singleton<GameplayEventHandler>
     {
-
+        [SerializeField] private SafeArea _safePanel;
         [SerializeField] private PausePopup _pausePopup;
+        [SerializeField] private GameObject _completeGamePopup;
         [SerializeField] private TextMeshProUGUI _timerText;
         [SerializeField] private Slider _timerSlider;
 
         private bool _timerGUIEnabled;
         private int _count = 0;
         
-        [Debug]
         public void Initialize()
         {
             AttemptsBehaviour.OnAttemptsChanged += OnAttemptsChanged;
 
             _timerSlider.maxValue = TimerBehaviour.Instance.GetFloat;
             _timerSlider.value = 0;
+            PauseBehaviour.OnPause += OnPause;
 
             StartCoroutine(UpdateTimerUI());
+            
+            Debug.Log("Gameplay Event Handler Initialized");
         }
-
-
+        
+        private void OnDestroy()
+        {
+            PauseBehaviour.OnPause -= OnPause;
+        }
+        
         private void OnAttemptsChanged(int value)
         {
             Debug.Log($"Attempt changed. Current value: {value}");
@@ -62,6 +70,19 @@ namespace UI
                 PopupType.Clear);
             if (_count == 0) ++_count;
         }
+
+        [Debug]
+        //TODO: Вызов функции событием
+        public void OnGameCompleted()
+        {
+            GameObject gameCompletedPopup = Instantiate(_completeGamePopup.gameObject, _safePanel.transform);
+        }
+
+        public void BackToMenuButton()
+        {
+            SceneManager.LoadScene("MainMenuScene");
+        }
         
+
     }
 }

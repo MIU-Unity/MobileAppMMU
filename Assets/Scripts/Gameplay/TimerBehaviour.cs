@@ -1,14 +1,13 @@
 using System;
 using System.Collections;
 using Common.Utility;
-using Interfaces;
 using Plugins.DebugAttribute;
 using UnityEngine;
 
 
 namespace Gameplay
 {
-    public class TimerBehaviour : Singleton<TimerBehaviour>, ICanBePaused
+    public class TimerBehaviour : Singleton<TimerBehaviour>
     {
         public static Action TimeIsUp;
 
@@ -37,10 +36,17 @@ namespace Gameplay
         public void Initialize(int k)
         {
             _currentTimeCount = Mathf.Clamp(120 - 30 * k, 30, 90);
+            PauseBehaviour.OnPause += OnPause;
+            Debug.Log("Timer Behaviour Initialized");
         }
 
         [Debug]
         public void Enable() => _timerEnabled = true;
+
+        private void OnDestroy()
+        {
+            PauseBehaviour.OnPause -= OnPause;
+        }
 
         private void Update()
         {
