@@ -8,6 +8,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace UI
 {
@@ -20,6 +21,11 @@ namespace UI
         [SerializeField] private TextMeshProUGUI _timerText;
         [SerializeField] private Slider _timerSlider;
 
+        [Space(10)]
+        [Header("Question")]
+        [SerializeField] private TextMeshProUGUI _questionText;
+        [SerializeField] private Button[] _buttons;
+        
         private bool _timerGUIEnabled;
         private int _count = 0;
         
@@ -75,14 +81,39 @@ namespace UI
         //TODO: Вызов функции событием
         public void OnGameCompleted()
         {
-            GameObject gameCompletedPopup = Instantiate(_completeGamePopup.gameObject, _safePanel.transform);
+            GameObject gameCompletedPopup = Instantiate(_completeGamePopup, _safePanel.transform);
+            var scoreText = gameCompletedPopup.transform.Find("ScoreText").GetComponent<TextMeshProUGUI>();
+            var replaced = scoreText.text.Replace("{score}", ScoreBehaviour.Instance.Get().ToString());
+            scoreText.text = replaced;
         }
 
         public void BackToMenuButton()
         {
             SceneManager.LoadScene("MainMenuScene");
         }
-        
 
+        public void DisplayQuestion(string question, string answer, string[] variants)
+        {
+            _questionText.text = question;
+
+            foreach (var button in _buttons)
+                button.onClick.RemoveAllListeners();
+            
+            int answerButton = Random.Range(0, _buttons.Length);
+            _buttons[answerButton].GetComponentInChildren<TextMeshProUGUI>().text = answer;
+            _buttons[answerButton].onClick.AddListener(() => QuestionsQueue.Instance.NextQuestion());
+            _buttons[answerButton].onClick.AddListener(() => ScoreBehaviour.Instance.Increase());
+            
+            for (int i = 0; i < _buttons.Length; i++)
+            {
+                if (i != answerButton)
+                {
+                    _buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = variants[i];
+                    _buttons[i].onClick.AddListener(() => AttemptsBehaviour.Instance.Decrease());
+                }
+            }
+        }
+        
+        
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using Plugins.DebugAttribute;
 using Common.Utility;
+using UI;
 using UnityEngine;
 
 namespace Gameplay
@@ -22,7 +23,8 @@ namespace Gameplay
         public void Decrease()
         {
             if (_currentAttempts == 0)
-                throw new Exception("Cannot decrease attempts below 0");
+                GameplayEventHandler.Instance.OnGameCompleted();
+            
             _currentAttempts--;
             OnAttemptsChanged?.Invoke(_currentAttempts);
         }
