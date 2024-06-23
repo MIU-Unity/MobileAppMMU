@@ -32,7 +32,8 @@ namespace Data
         public static void Set(int value)
         {
             if (value is < 1 or > MAX_DIFFICULTY)
-                throw new Exception($"Invalid difficulty. Value must be between 0 and {MAX_DIFFICULTY}");
+                throw new Exception($"Invalid difficulty. Value must be between 0 and {MAX_DIFFICULTY}. " +
+                                    $"Input value: {value}");
             
             _currentDifficulty = value;
         }

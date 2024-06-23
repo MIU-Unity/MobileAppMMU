@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Data;
 using UI;
 using UnityEngine;
@@ -7,8 +8,9 @@ namespace Gameplay
 {
     public class Bootstrap : MonoBehaviour
     {
-        public void Start()
+        public IEnumerator Start()
         {
+            yield return new WaitForFixedUpdate();
             AttemptsBehaviour.Instance.Initialize();
             TimerBehaviour.Instance.Initialize(Difficult.Get());
             ScoreBehaviour.Instance.Initialize();

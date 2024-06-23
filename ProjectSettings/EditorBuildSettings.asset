@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameFlatScene.unity
     guid: a53b9895613bf4832a8f04115d5d20e0
+  - enabled: 1
+    path: Assets/Scenes/LevelBootstrap.unity
+    guid: f073726c1b8034cb18fde6879a8ec4b2
   m_configObjects: {}

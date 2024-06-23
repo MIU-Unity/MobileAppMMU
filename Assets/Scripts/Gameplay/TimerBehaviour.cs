@@ -30,23 +30,34 @@ namespace Gameplay
             }
         }
 
+        /// <summary>
+        /// Общее время игры в строке вида 00:00ы
+        /// </summary>
+        public string GetPlayedTimeString
+        {
+            get
+            {
+                float playTime = _maxTimeCount - _currentTimeCount;
+                float minutes = Mathf.FloorToInt(playTime / 60);
+                float seconds = Mathf.FloorToInt(playTime % 60);
+                
+                return string.Format("{0:00}:{1:00}", minutes, seconds);
+            }
+        }
+        
         private float _currentTimeCount;
+        private float _maxTimeCount;
         private bool _timerEnabled;
 
         public void Initialize(int k)
         {
-            _currentTimeCount = Mathf.Clamp(120 - 30 * k, 30, 90);
-            //PauseBehaviour.OnPause += OnPause;
-            Debug.Log("Timer Behaviour Initialized");
+            _currentTimeCount = _maxTimeCount = Mathf.Clamp(120 - 30 * k, 30, 90);
+            Debug.Log("Timer Behaviour Initialized: " + _currentTimeCount);
         }
 
         [Debug]
         public void Enable() => _timerEnabled = true;
-
-        private void OnDestroy()
-        {
-            //PauseBehaviour.OnPause -= OnPause;
-        }
+        
 
         private void Update()
         {
@@ -61,6 +72,7 @@ namespace Gameplay
                 _currentTimeCount = 0;
                 _timerEnabled = false;
                 TimeIsUp?.Invoke();
+                _currentTimeCount = _maxTimeCount;
             }
         }
 

@@ -984,8 +984,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvas: {fileID: 601072971}
-  _popupClearPrefab: {fileID: 0}
-  _popupWithButtonsPrefab: {fileID: 0}
+  _popupClearPrefab: {fileID: 9127008740319470623, guid: ff6964fa9d34542809c2a0ce7e871624, type: 3}
+  _popupWithButtonsPrefab: {fileID: 1256104631357212977, guid: d4d152b65b0084f86b30c699af700f0c, type: 3}
 --- !u!1 &363171591
 GameObject:
   m_ObjectHideFlags: 0
@@ -2643,13 +2643,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66412458ae9942ce896b3c85a197967a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _safePanel: {fileID: 721757408}
-  _pausePopup: {fileID: 3046784715682183344, guid: b603d4e251e524b519d02cfc519e3a19, type: 3}
+  _safePanel: {fileID: 721757404}
+  _pausePopup: {fileID: 130421313811094750}
   _completeGamePopup: {fileID: 7558556074866484892, guid: da967885ec3b348c187ac2c4a1739f05, type: 3}
   _timerText: {fileID: 1686804018}
   _timerSlider: {fileID: 744782958}
-  _questionText: {fileID: 0}
-  _buttons: []
+  _questionText: {fileID: 1166549310}
+  _buttons:
+  - {fileID: 2001842539}
+  - {fileID: 1659445132}
+  - {fileID: 1056704176}
+  - {fileID: 1257748866}
 --- !u!1 &1236695633
 GameObject:
   m_ObjectHideFlags: 0
@@ -4452,6 +4456,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b603d4e251e524b519d02cfc519e3a19, type: 3}
+--- !u!1 &130421313811094750 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5850024367085325212, guid: b603d4e251e524b519d02cfc519e3a19, type: 3}
+  m_PrefabInstance: {fileID: 130421313811094749}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4009588100702719915 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4395441471713239693, guid: b603d4e251e524b519d02cfc519e3a19, type: 3}

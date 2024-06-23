@@ -11,8 +11,6 @@ namespace Common.Utility
         {
             get
             {
-                if (_instance != null) return _instance;
-                
                 _instance = FindObjectOfType(typeof(T)) as T;
                 if (_instance == null)
                 {

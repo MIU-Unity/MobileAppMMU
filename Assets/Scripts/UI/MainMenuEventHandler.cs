@@ -30,15 +30,15 @@ namespace UI
                     () =>
                     {
                         Level.SetCurrent(1);
-                        SceneManager.LoadScene("GameFlatScene");
+                        SceneManager.LoadScene("LevelBootstrap");
                     }
                 );
-            } else SceneManager.LoadScene("GameFlatScene");
+            } else SceneManager.LoadScene("LevelBootstrap");
         }
 
         public void OnContinueButtonPressed()
         {
-            SceneManager.LoadScene("GameFlatScene");
+            SceneManager.LoadScene("LevelBootstrap");
         }
         
         public void OnSettingsButtonPressed()

@@ -21,6 +21,19 @@ namespace UI
         [Debug("Test Popup", "This is a test popup", PopupType.Clear, null)]
         public void Open(string label, string text, PopupType type, [CanBeNull] Action callback = null)
         {
+            if (_canvas == null)
+            {
+                try
+                {
+                    _canvas = FindObjectOfType<Canvas>();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+            
             switch (type)
             {
                 case PopupType.Clear:

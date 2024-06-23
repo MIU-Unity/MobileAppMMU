@@ -1,5 +1,6 @@
 using Common.Utility;
 using UI;
+using UnityEngine;
 
 namespace Gameplay
 {
@@ -13,6 +14,8 @@ namespace Gameplay
             _questions = GetQuestions(Data.Level.GetCurrent());
             _currentQuestion = 0;
             DisplayQuestion();
+            
+            Debug.Log("Current Level: " + Data.Level.GetCurrent());
         }
 
         private Question[] GetQuestions(int levelID)
@@ -35,7 +38,7 @@ namespace Gameplay
             _currentQuestion++;
             if (_currentQuestion >= _questions.Length)
             {
-                GameplayEventHandler.Instance.OnGameCompleted();
+                GameplayEventHandler.Instance.OnGameCompleted(true);
                 return;
             }
             DisplayQuestion();

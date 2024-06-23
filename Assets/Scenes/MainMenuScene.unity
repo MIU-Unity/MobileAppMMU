@@ -946,8 +946,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvas: {fileID: 601072971}
-  _popupClearPrefab: {fileID: 0}
-  _popupWithButtonsPrefab: {fileID: 0}
+  _popupClearPrefab: {fileID: 9127008740319470623, guid: ff6964fa9d34542809c2a0ce7e871624, type: 3}
+  _popupWithButtonsPrefab: {fileID: 1256104631357212977, guid: d4d152b65b0084f86b30c699af700f0c, type: 3}
 --- !u!1 &763311006
 GameObject:
   m_ObjectHideFlags: 0

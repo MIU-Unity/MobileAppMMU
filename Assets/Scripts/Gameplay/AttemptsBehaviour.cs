@@ -23,7 +23,7 @@ namespace Gameplay
         public void Decrease()
         {
             if (_currentAttempts == 0)
-                GameplayEventHandler.Instance.OnGameCompleted();
+                GameplayEventHandler.Instance.OnGameCompleted(false);
             
             _currentAttempts--;
             OnAttemptsChanged?.Invoke(_currentAttempts);
