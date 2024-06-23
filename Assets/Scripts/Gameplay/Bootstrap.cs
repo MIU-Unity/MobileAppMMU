@@ -5,6 +5,7 @@ using Data;
 using Newtonsoft.Json;
 using UI;
 using UnityEngine;
+using Object = System.Object;
 
 namespace Gameplay
 {
@@ -19,11 +20,11 @@ namespace Gameplay
             GameplayEventHandler.Instance.Initialize();
             QuestionsQueue.Instance.Initialize();
 
-            var x = await CustomHttpClient.Instance.Get("https://jsonplaceholder.org/posts/1");
+            var x = await CustomHttpClient.Instance.Get("/tags");
 
-            var y = JsonConvert.DeserializeObject<Dictionary<string, string>>(x);
+            var y = JsonConvert.DeserializeObject<ServerResponse<TagEntity>>(x);
             
-            Debug.Log(y["id"]);
+            Debug.Log(y.data[0].value);
         }
     }
 }

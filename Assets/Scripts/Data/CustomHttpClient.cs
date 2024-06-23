@@ -5,9 +5,13 @@ using Common.Utility;
 
 public class CustomHttpClient : Singleton<CustomHttpClient>
 {
+    public string BaseUrl { get; private set; } = "change me";
+    
     public async Task<string> Get(string url)
     {
-        UnityWebRequest request = UnityWebRequest.Get(url);
+        UnityWebRequest request = UnityWebRequest.Get(BaseUrl + url);
+        request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("Authorization", "Bearer TOKEN");
         var operation =  request.SendWebRequest();
 
         while (!operation.isDone)
