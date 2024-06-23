@@ -16,5 +16,11 @@ namespace Data
             Difficult.Load();
             Level.Load();
         }
+
+        public void Reset()
+        {
+            Difficult.Reset();
+            Level.Reset();
+        }
     }
 }

@@ -12,6 +12,11 @@ namespace Data
             return _currentLevel;
         }
 
+        public static void SetCurrent(int level)
+        {
+            _currentLevel = level;
+        }
+        
         public static int GetMax()
         {
             return _maxOpenedLevel;
@@ -27,6 +32,13 @@ namespace Data
         {
             PlayerPrefs.SetInt("level", _currentLevel);
             PlayerPrefs.SetInt("maxLevel", _maxOpenedLevel);
+        }
+
+        public static void Reset()
+        {
+            _currentLevel = 1;
+            _maxOpenedLevel = 1;
+            Save();
         }
     }
 }
