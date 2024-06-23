@@ -1,7 +1,6 @@
 using Data;
 using Gameplay;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
