@@ -22,9 +22,9 @@ namespace Gameplay
             //заглушка
             Question[] result = new Question[]
             {
-                new Question(0,"Вопрос 1","4", new string[] {"1","2","3"}),
-                new Question(0,"Вопрос 2","2", new string[] {"1","4","3"}),
-                new Question(0,"Вопрос 3","1", new string[] {"4","2","3"})
+                new Question(0,"Вопрос 1",3, new string[] {"1","2","3","4"}),
+                new Question(0,"Вопрос 2",1, new string[] {"1","4","3","2"}),
+                new Question(0,"Вопрос 3",0, new string[] {"4","2","3","1"})
             };
                 
             return result;
@@ -33,7 +33,7 @@ namespace Gameplay
         public void NextQuestion()
         {
             _currentQuestion++;
-            if (_currentQuestion > _questions.Length)
+            if (_currentQuestion >= _questions.Length)
             {
                 GameplayEventHandler.Instance.OnGameCompleted();
                 return;
@@ -45,7 +45,7 @@ namespace Gameplay
         {
             GameplayEventHandler.Instance.DisplayQuestion(
             _questions[_currentQuestion].Text,
-            _questions[_currentQuestion].RightAnswer,
+            _questions[_currentQuestion].RightAnswerID,
             _questions[_currentQuestion].Answers
             );
         }
@@ -56,14 +56,14 @@ namespace Gameplay
     {
         public int ID { get; private set; }
         public string Text { get; private set; }
-        public string RightAnswer { get; private set; }
+        public int RightAnswerID { get; private set; }
         public string[] Answers { get; private set; }
 
-        public Question(int id, string text, string rightAnswer, string[] answers)
+        public Question(int id, string text, int rightAnswerID, string[] answers)
         {
             this.ID = id;
             this.Text = text;
-            this.RightAnswer = rightAnswer;
+            this.RightAnswerID = rightAnswerID;
             this.Answers = answers;
         }
     }

@@ -15,7 +15,7 @@ namespace UI
         {
             _hasProgress = Level.GetCurrent() != 1;
             
-            if(_hasProgress == false)
+            if(_hasProgress == false && _continueButton != null)
                 _continueButton.interactable = false;
         }
         

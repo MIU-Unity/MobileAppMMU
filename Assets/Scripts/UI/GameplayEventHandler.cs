@@ -2,6 +2,7 @@ using System;
 using Common.Utility;
 using System.Collections;
 using Crystal;
+using Data;
 using Gameplay;
 using Plugins.DebugAttribute;
 using TMPro;
@@ -69,49 +70,65 @@ namespace UI
 
         public void OnHintButtonClick()
         {
-            //TODO: автоматическое определение уровня и типа подсказки
             PopupConstructor.Instance.Open(
                 "Подсказка",
-                HintBehaviour.Instance.Get(1, (HintType)_count),
+                HintBehaviour.Instance.Get(Level.GetCurrent(), (HintType)_count),
                 PopupType.Clear);
             if (_count == 0) ++_count;
         }
-
-        [Debug]
-        //TODO: Вызов функции событием
+        
         public void OnGameCompleted()
         {
-            GameObject gameCompletedPopup = Instantiate(_completeGamePopup, _safePanel.transform);
-            var scoreText = gameCompletedPopup.transform.Find("ScoreText").GetComponent<TextMeshProUGUI>();
-            var replaced = scoreText.text.Replace("{score}", ScoreBehaviour.Instance.Get().ToString());
-            scoreText.text = replaced;
+            PopupGameCompleted gameCompletedPopup = 
+                Instantiate(_completeGamePopup, _safePanel.transform)
+                .GetComponent<PopupGameCompleted>();
+            var replaced = gameCompletedPopup.ScoreText.text
+                .Replace("{score}", ScoreBehaviour.Instance.Get().ToString());
+            gameCompletedPopup.ScoreText.text = replaced;
+
+            int currentLevel = Level.GetCurrent();
+            currentLevel++;
+            if (currentLevel > Level.GetMax())
+                currentLevel = Level.GetMax();
+            
+            Level.SetCurrent(currentLevel);
+            SaveLoadManager.Instance.Save();
         }
 
         public void BackToMenuButton()
         {
-            SceneManager.LoadScene("MainMenuScene");
+            PopupConstructor.Instance.Open(
+                "Выход",
+                "Вы действительно хотите выйти из игры?",
+                PopupType.WithButtons,
+                () => SceneManager.LoadScene("MainMenuScene"));
         }
 
-        public void DisplayQuestion(string question, string answer, string[] variants)
+        public void DisplayQuestion(string question, int answerID, string[] variants)
         {
             _questionText.text = question;
 
             foreach (var button in _buttons)
+            {
+                button.interactable = true;
                 button.onClick.RemoveAllListeners();
+                button.onClick.AddListener(()=> button.interactable = false);
+            }
             
-            int answerButton = Random.Range(0, _buttons.Length);
-            _buttons[answerButton].GetComponentInChildren<TextMeshProUGUI>().text = answer;
-            _buttons[answerButton].onClick.AddListener(() => QuestionsQueue.Instance.NextQuestion());
-            _buttons[answerButton].onClick.AddListener(() => ScoreBehaviour.Instance.Increase());
+            _buttons[answerID].onClick.RemoveAllListeners();
+            _buttons[answerID].GetComponentInChildren<TextMeshProUGUI>().text = variants[answerID];
+            _buttons[answerID].onClick.AddListener(() => ScoreBehaviour.Instance.Increase());
+            _buttons[answerID].onClick.AddListener(() => QuestionsQueue.Instance.NextQuestion());
             
             for (int i = 0; i < _buttons.Length; i++)
             {
-                if (i != answerButton)
+                if (i != answerID)
                 {
                     _buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = variants[i];
                     _buttons[i].onClick.AddListener(() => AttemptsBehaviour.Instance.Decrease());
                 }
             }
+            
         }
         
         

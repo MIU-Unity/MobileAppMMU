@@ -11,6 +11,13 @@ namespace UI
         [SerializeField] private TextMeshProUGUI _diffucultyButtonText;
         [SerializeField] private Image _diffucultyButtonImage;
         [SerializeField] private Sprite[] _diffucultyButtonSprites;
+
+        private void Start()
+        {
+            int current = Difficult.Get();
+            _diffucultyButtonImage.sprite = _diffucultyButtonSprites[current - 1];
+            _diffucultyButtonText.text = "Сложность: " + Difficult.GetName();
+        }
         
         public void OnBackButtonPressed()
         {

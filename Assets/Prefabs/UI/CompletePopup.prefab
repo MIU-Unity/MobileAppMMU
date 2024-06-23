@@ -1542,6 +1542,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3356206592476314094}
+  - component: {fileID: 4887285013612161677}
   m_Layer: 5
   m_Name: CompletePopup
   m_TagString: Untagged
@@ -1569,6 +1570,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4887285013612161677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7558556074866484892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41664b3aa0cc44a0af7bd2c8ab2696b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ScoreText>k__BackingField: {fileID: 4427833582901166894}
 --- !u!1 &7668731536490752036
 GameObject:
   m_ObjectHideFlags: 0

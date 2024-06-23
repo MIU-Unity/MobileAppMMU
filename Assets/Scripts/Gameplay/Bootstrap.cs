@@ -9,16 +9,11 @@ namespace Gameplay
     {
         public void Start()
         {
-            //HintBehaviour.Instance.Initialize();
             AttemptsBehaviour.Instance.Initialize();
             TimerBehaviour.Instance.Initialize(Difficult.Get());
             ScoreBehaviour.Instance.Initialize();
+            GameplayEventHandler.Instance.Initialize();
             QuestionsQueue.Instance.Initialize();
-            
-            // AnswerBehaviour.Instance.Initialize(); // help is needed
-            //add more instances when they release
-            
-            GameplayEventHandler.Instance.Initialize(); // всегда последним
         }
     }
 }
