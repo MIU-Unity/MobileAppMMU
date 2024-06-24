@@ -7,11 +7,12 @@ namespace Data
     {
         public async void Start()
         {
-            SaveLoadManager.Instance.Load();
             await Connection.Instance.Initialize();
 
-            if(Connection.Instance.Status)
-                SceneManager.LoadScene("MainMenuScene");
+            if (!Connection.Instance.Status) return;
+            
+            await SaveLoadManager.Instance.Load();
+            SceneManager.LoadScene("MainMenuScene");
         }
     }
 }

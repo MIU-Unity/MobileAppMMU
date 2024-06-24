@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Common.Utility;
 using UnityEngine;
 
@@ -11,10 +12,10 @@ namespace Data
             Level.Save();
         }
         
-        public void Load()
+        public async Task Load()
         {
             Difficult.Load();
-            Level.Load();
+            await Level.Load();
         }
 
         public void Reset()
