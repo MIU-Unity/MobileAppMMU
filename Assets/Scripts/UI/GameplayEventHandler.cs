@@ -53,6 +53,7 @@ namespace UI
         private void TimeIsUp()
         {
             _timeIsUp = true;
+            OnGameCompleted(false);
         } 
 
 
