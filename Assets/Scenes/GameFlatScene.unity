@@ -939,8 +939,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1610185142}
   m_HandleRect: {fileID: 1610185141}
   m_Direction: 2
-  m_Value: 1.0000005
-  m_Size: 0.5520809
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1065,7 +1065,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -50, y: -50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &363171593
 MonoBehaviour:
@@ -1087,7 +1087,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lorem ipsum
+  m_text: "\u042D\u0442\u043E \u0442\u043E\u0447\u043D\u043E \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u044B\u0439
+    \u043E\u0442\u0432\u0435\u0442"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1114,7 +1115,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 58
+  m_fontSize: 43.75
   m_fontSizeBase: 62
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1130,7 +1131,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -1235,7 +1236,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -50, y: -50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &446053532
 MonoBehaviour:
@@ -1257,7 +1258,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lorem ipsum
+  m_text: "\u042D\u0442\u043E \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u044B\u0439
+    \u043E\u0442\u0432\u0435\u0442"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1284,7 +1286,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 58
+  m_fontSize: 44.1
   m_fontSizeBase: 62
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1300,7 +1302,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -1702,7 +1704,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -50, y: -50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &700844939
 MonoBehaviour:
@@ -1724,7 +1726,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lorem ipsum
+  m_text: "\u042D\u0442\u043E \u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u044B\u0439
+    \u043E\u0442\u0432\u0435\u0442"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1751,7 +1754,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 58
+  m_fontSize: 44.1
   m_fontSizeBase: 62
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1767,7 +1770,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -2130,7 +2133,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 987380041}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1225303602}
+        m_TargetAssemblyTypeName: UI.GameplayEventHandler, Assembly-CSharp
+        m_MethodName: OnHintButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &987380041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2369,7 +2384,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -50, y: -50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1073839284
 MonoBehaviour:
@@ -2391,7 +2406,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lorem ipsum
+  m_text: "\u042D\u0442\u043E \u043D\u0435\u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u044B\u0439
+    \u043E\u0442\u0432\u0435\u0442"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2418,7 +2434,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 58
+  m_fontSize: 42.05
   m_fontSizeBase: 62
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2434,7 +2450,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 0
+  m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -2526,33 +2542,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eros enim,
-    fermentum iaculis sapien nec, vestibulum fringilla erat. Aliquam eget sapien
-    aliquet, bibendum justo vel, aliquet dolor. Pellentesque dapibus urna eu consectetur
-    eleifend. In sed faucibus lectus, eget cursus dolor. Curabitur placerat ac mi
-    malesuada commodo. Morbi blandit vestibulum urna, non lacinia arcu hendrerit
-    vel. Mauris rutrum ex nec dui vehicula fermentum. Fusce id ultricies augue.
-
-
-    Nulla
-    finibus facilisis ligula mollis placerat. Praesent ac blandit libero. Donec et
-    sodales felis. Nullam non felis eget est laoreet sollicitudin eu sit amet eros.
-    Proin nec viverra nulla. Morbi ultricies nunc risus, vel fringilla metus sagittis
-    at. Ut commodo sit amet eros quis hendrerit. Pellentesque diam orci, imperdiet
-    nec finibus eu, cursus nec libero. Nunc consectetur, augue iaculis sodales varius,
-    elit ante molestie nisi, et aliquam nisi leo vel libero. Donec et nisi quis mauris
-    tristique imperdiet. Morbi pulvinar dapibus sem ut congue.
-
-
-    Etiam id rutrum
-    augue, et commodo nulla. In ultrices lacus nec lorem fermentum facilisis. Vestibulum
-    ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
-    Donec et imperdiet nisi. Maecenas vitae elit odio. Quisque vulputate sapien egestas,
-    egestas elit et, tempus erat. Suspendisse vel nulla pretium tortor interdum vehicula
-    at sed sapien. Etiam rutrum fermentum justo sit amet iaculis. Sed ac fringilla
-    metus. Sed diam nisi, suscipit ac massa et, ullamcorper dignissim nisi.
-
-'
+  m_text: "\u042D\u0442\u043E \u0442\u0435\u0441\u0442\u043E\u0432\u044B\u0439 \u0432\u043E\u043F\u0440\u043E\u0441"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2692,6 +2682,7 @@ MonoBehaviour:
   _completeGamePopup: {fileID: 7558556074866484892, guid: da967885ec3b348c187ac2c4a1739f05, type: 3}
   _timerText: {fileID: 1686804018}
   _timerSlider: {fileID: 744782958}
+  _questionLabel: {fileID: 1545110999}
   _questionText: {fileID: 1166549310}
   _buttons:
   - {fileID: 2001842539}
@@ -3213,7 +3204,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lorem ipsum dolor sit amet?
+  m_text: "\u0412\u043E\u043F\u0440\u043E\u0441 {0}"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3240,12 +3231,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
+  m_fontSize: 72
   m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 48
+  m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512

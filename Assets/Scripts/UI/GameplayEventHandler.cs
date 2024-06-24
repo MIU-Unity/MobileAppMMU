@@ -16,8 +16,8 @@ namespace UI
         [SerializeField] private TextMeshProUGUI _timerText;
         [SerializeField] private Slider _timerSlider;
 
-        [Space(10)]
-        [Header("Question")]
+        [Space(10)] [Header("Question")] 
+        [SerializeField] private TextMeshProUGUI _questionLabel;
         [SerializeField] private TextMeshProUGUI _questionText;
         [SerializeField] private Button[] _buttons;
         
@@ -88,9 +88,8 @@ namespace UI
         {
             PopupConstructor.Instance.Open(
                 "Подсказка",
-                HintBehaviour.Instance.Get(Level.GetCurrent(), (HintType)_count),
+                QuestionsQueue.Instance.GetHint(),
                 PopupType.Clear);
-            if (_count == 0) ++_count;
         }
         
         public void OnGameCompleted(bool success)
@@ -105,7 +104,8 @@ namespace UI
                 .Replace("{time}", TimerBehaviour.Instance.GetPlayedTimeString);
             gameCompletedPopup.TimeText.text = replaced;
             gameCompletedPopup.SetNextButtonText(success);
-
+            gameCompletedPopup.SetLabelText(success);
+            
             if (success)
             {
                 int currentLevel = Level.GetCurrent();
@@ -131,10 +131,12 @@ namespace UI
         {
             SaveLoadManager.Instance.Save();
             SceneManager.LoadScene("LevelBootstrap");
-        }   
+        }
         
-        public void DisplayQuestion(string question, int answerID, string[] variants)
+        public void DisplayQuestion(string question, AnswerEntity rightAnswer, AnswerEntity[] answers)
         {
+            int currentQuestion = QuestionsQueue.Instance.CurrentQuestion + 1;
+            _questionLabel.text = string.Format("Вопрос {0}", currentQuestion);
             _questionText.text = question;
 
             foreach (var button in _buttons)
@@ -143,18 +145,19 @@ namespace UI
                 button.onClick.RemoveAllListeners();
                 button.onClick.AddListener(()=> button.interactable = false);
             }
-
-            
-            _buttons[answerID].onClick.RemoveAllListeners();
-            _buttons[answerID].GetComponentInChildren<TextMeshProUGUI>().text = variants[answerID];
-            _buttons[answerID].onClick.AddListener(() => ScoreBehaviour.Instance.Increase());
-            _buttons[answerID].onClick.AddListener(() => QuestionsQueue.Instance.NextQuestion());
             
             for (int i = 0; i < _buttons.Length; i++)
             {
-                if (i != answerID)
+                if (answers[i].id == rightAnswer.id)
                 {
-                    _buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = variants[i];
+                    _buttons[i].onClick.RemoveAllListeners();
+                    _buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = rightAnswer.text;
+                    _buttons[i].onClick.AddListener(() => ScoreBehaviour.Instance.Increase());
+                    _buttons[i].onClick.AddListener(() => QuestionsQueue.Instance.NextQuestion());
+                }
+                else
+                {
+                    _buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = answers[i].text;
                     _buttons[i].onClick.AddListener(() => AttemptsBehaviour.Instance.Decrease());
                 }
             }

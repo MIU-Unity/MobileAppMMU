@@ -2,16 +2,17 @@
 using UnityEngine.Networking;
 using System.Threading.Tasks;
 using Common.Utility;
+using Data;
 
 public class CustomHttpClient : Singleton<CustomHttpClient>
 {
-    public string BaseUrl { get; private set; } = "change me";
+    public string BaseUrl { get; private set; } = API.HOST;
     
     public async Task<string> Get(string url)
     {
         UnityWebRequest request = UnityWebRequest.Get(BaseUrl + url);
         request.SetRequestHeader("Content-Type", "application/json");
-        request.SetRequestHeader("Authorization", "Bearer TOKEN");
+        request.SetRequestHeader("Authorization", "Bearer " + API.TOKEN);
         var operation =  request.SendWebRequest();
 
         while (!operation.isDone)

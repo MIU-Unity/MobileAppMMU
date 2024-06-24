@@ -18,13 +18,13 @@ namespace Gameplay
             TimerBehaviour.Instance.Initialize(Difficult.Get());
             ScoreBehaviour.Instance.Initialize();
             GameplayEventHandler.Instance.Initialize();
-            QuestionsQueue.Instance.Initialize();
+            await QuestionsQueue.Instance.Initialize();
 
-            var x = await CustomHttpClient.Instance.Get("/tags");
-
-            var y = JsonConvert.DeserializeObject<ServerResponse<TagEntity>>(x);
-            
-            Debug.Log(y.data[0].value);
+            // var x = await CustomHttpClient.Instance.Get("/tags");
+            //
+            // var y = JsonConvert.DeserializeObject<ServerResponse<TagEntity>>(x);
+            //
+            // Debug.Log(y.data[0].value);
         }
     }
 }

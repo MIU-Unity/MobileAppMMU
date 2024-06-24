@@ -4,8 +4,8 @@ namespace Data
 {
     public static class Level
     {
-        private static int _currentLevel;
-        private static int _maxLevel;
+        private static int _currentLevel = PlayerPrefs.GetInt("level", 1);
+        private static int _maxLevel = PlayerPrefs.GetInt("maxLevel", 10);
 
         public static int GetCurrent()
         {
@@ -14,6 +14,7 @@ namespace Data
 
         public static void SetCurrent(int level)
         {
+            if (level < 1) level = 1;
             _currentLevel = level;
         }
         

@@ -73,3 +73,6 @@ crashlytics-build.properties
 
 
 .idea
+Assets/Scripts/Data/API.cs
+Assets/Scripts/Data/API.cs.meta
+/.build

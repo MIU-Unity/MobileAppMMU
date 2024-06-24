@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,13 +5,13 @@ namespace Data
 {
     public class Bootstrap : MonoBehaviour
     {
-        public IEnumerator Start()
+        public async void Start()
         {
             SaveLoadManager.Instance.Load();
+            await Connection.Instance.Initialize();
 
-            yield return new WaitForSeconds(2);
-            
-            SceneManager.LoadScene("MainMenuScene");
+            if(Connection.Instance.Status)
+                SceneManager.LoadScene("MainMenuScene");
         }
     }
 }
